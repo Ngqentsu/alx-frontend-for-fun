@@ -9,6 +9,17 @@ Usage:
 import sys
 import os
 
+
+def markdown_to_html(input_file, output_file):
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for i in infile:
+            stripped_line = i.strip()
+            if stripped_line.startswith('#'):
+                heading_level = stripped_line.count('#')
+                heading_text = stripped_line[heading_level:].strip()
+                if 1 <= heading_level <= 6:
+                    outfile.write(f"<h{heading_level}>{heading_text}</h{heading_level}>\n")
+
 def main():
     if len(sys.argv) < 3:
         print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
@@ -21,6 +32,7 @@ def main():
         print(f"Missing {input_file}", file=sys.stderr)
         sys.exit(1)
 
+    markdown_to_html(input_file, output_file)
     sys.exit(0)
 
 if __name__ == "__main__":
