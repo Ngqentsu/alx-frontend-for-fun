@@ -9,11 +9,14 @@ Usage:
 import sys
 import os
 import re
+import hashlib
 
 def replace_bold_and_emphasis(text):
     """Replaces Markdown bold and emphasis with corresponding HTML tags."""
     text = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', text)
     text = re.sub(r'__(.+?)__', r'<em>\1</em>', text)
+    text = re.sub(r'\[\[(.+?)\]\]', lambda match: hashlib.md5(match.group(1).encode()).hexdigest(), text)
+    text = re.sub(r'\(\((.+?)\)\)', lambda match: re.sub(r'[cC]', '', match.group(1)), text)
     return text
 
 def markdown_to_html(input_file, output_file):
