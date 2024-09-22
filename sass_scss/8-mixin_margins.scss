@@ -1,0 +1,14 @@
+/* Assigns margin left and right at 10px to body tags and margin left and right at 15px to div tags */
+
+@mixin set-margins($left-right-margin) {
+  margin-left: $left-right-margin;
+  margin-right: $left-right-margin;
+}
+
+body {
+  @include set-margins(10px);
+}
+
+div {
+  @include set-margins(15px);
+}
