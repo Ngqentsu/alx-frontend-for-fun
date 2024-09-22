@@ -1,0 +1,10 @@
+/* Assigns a text color to elements inside body tags and overrides the color
+for elements with the .red class inside body tags */
+
+body {
+  color: #3D3D3D;
+
+  .red {
+    color: #FF0000;
+  }
+}
